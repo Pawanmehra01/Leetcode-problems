@@ -17,11 +17,12 @@ public:
     //    }
     //    return mx ;'
      int count = 1 ;
-     int mx = 1 ;
+     if(nums.size()==1)return 1  ;
+     int mx = 0 ;
       for( int i = 1 ;i< nums.size() ;i++){
-            if((nums[i-1]<nums[i]))count++ ;
+            if((nums[i-1]<nums[i])){count++ ;}
             
-            else count = 1 ;
+            else {count = 1 ;}
 
             mx = max (mx,count) ;
       }
