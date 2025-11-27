@@ -1,25 +1,28 @@
 class Solution {
 public:
     long long maxSubarraySum(vector<int>& nums, int k) {
-        long long n  = nums.size();
-        vector<long long> mn(k, LLONG_MAX);
-        long long sum = 0;     // prefix sum
-        long long ans = LLONG_MIN;
-        
-        mn[0] = 0;   // prefix[0]
-
-        for(long long i = 0; i < n; i++){
-            sum += nums[i];
-            
-            long long mod = (i + 1) % k;
-
-            if(mn[mod] != LLONG_MAX){
-                ans = max(ans, sum - mn[mod]);
-            }
-
-            mn[mod] = min(mn[mod], sum);
+     int n = nums.size();
+     vector<long long >preSum(n) ;
+     preSum[0] = nums[0] ;
+     //using kadane algoirthm and prefix sum 
+     //tc = o(K*n/k) first loop and second loop as lopp trsverse only less than k 
+     // sc = O(n) prefic array 
+        for(int i = 1 ;i < n ; i++ ){
+            preSum[i] =preSum[i-1] + nums[i] ;
         }
-
-        return ans;
+        long long result = LLONG_MIN;
+        for( int start = 0 ; start < k ;start++ ){
+            long long currSum =  0;
+            int i  = start ;
+            while(i<n && i+k-1 < n){
+                int j  = i+k-1 ;
+                long long subSum = preSum[j] - ((i > 0) ? preSum[i-1] : 0) ;
+                //kadane algorithm logic 
+                currSum = max(subSum,currSum + subSum) ;
+                result = max(result , currSum) ;
+                i+=k ;
+            }
+        }
+        return result ;
     }
 };
