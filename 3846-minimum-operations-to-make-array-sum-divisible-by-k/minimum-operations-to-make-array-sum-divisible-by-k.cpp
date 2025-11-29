@@ -7,12 +7,7 @@ public:
             sum  += nums[i] ;
         }
         int ans = sum % k ;
-        if(sum >= k){
-            
-            if(ans == 0)return 0 ;
-            else return ans;
-            
-        }
-        return sum ;
+      
+        return ans ;
     }
 };
