@@ -11,8 +11,8 @@ public:
         }
        
         int ans  = 0;
-        int i =0 ;
-        while(i<n){
+        int i =1;
+        while(i<=n-1){
             int ans = prefix[i] ;
             int sol = prefix[n-1] - prefix[i];
             if(abs((ans-sol))%2==0 )count++ ;
@@ -20,6 +20,6 @@ public:
             cout<<"count"<<count<<endl;
             i++ ;
         }if(count == 0)return 0 ;
-        return count -1 ;
+        return count ;
     }
 };
