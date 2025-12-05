@@ -19,7 +19,6 @@ public:
             cout << "sum diff"<<ans-sol<<endl;
             cout<<"count"<<count<<endl;
             i++ ;
-        }if(count == 0)return 0 ;
-        return count ;
+        }return count ;
     }
 };
