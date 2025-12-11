@@ -1,18 +1,23 @@
 class Solution {
-public:
-    bool searchMatrix(vector<vector<int>>& matrix, int target) {
-       if(matrix.size()==1 && matrix[0][0] == target )return true ;
-      
-        int m = matrix[0].size()-1;
-        int n = matrix.size()-1;
-        int top = 0 ;
-        int right = m ;
-        while (top <=n &&  right>=0 ){
-            if(matrix[top][right] ==  target)return true ;
-            else if( matrix[top][right]>target)right-- ;
-            else top++ ;
+public: 
+    bool binarysearch(vector<vector<int>>&matrix , int target ,int i ){
+        int low  = 0 ;
+        int high = matrix.size()-1;
+        while(low<=high){
+            int mid = (low)+(high-low)/2 ;
+            if(matrix[mid][i] == target)return true ;
+            else if (matrix[mid][i] >target)high=mid-1 ;
+            else if(matrix[mid][i]<target)low = mid+1 ;
         }
-        return false ;
-
+      return false ;
+    }
+    bool searchMatrix(vector<vector<int>>& matrix, int target) {
+    int n  = matrix[0].size();
+    int m = matrix.size() ;
+        for( int i = 0 ;i < n ; i ++ ){
+             //calll for binary saerch for elemebnt in n col;
+           if( binarysearch(matrix,target,i))return true;
+        }
+    return false ;
     }
 };
