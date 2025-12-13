@@ -20,8 +20,8 @@ public:
     // }
     void tree(TreeNode* &root ,int x) {
         if(root==NULL){
-           root = new TreeNode(x);
-           
+           TreeNode* node = new TreeNode(x);
+           root = node ;
            return ;
         }
         if(root->val < x ){
