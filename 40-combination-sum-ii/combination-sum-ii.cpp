@@ -2,13 +2,18 @@ class Solution {
 public:
     vector<int>ans ;
     void sumtwo(vector<int>& nums, vector<vector<int>>&res ,int target ,int n  , int  i,int sum){
-        if (sum == target) {
-            res.push_back(ans);
-            return;
+        if( sum ==  target){
+            res.push_back(ans) ;
+            return ;
         }
+        if(i>n)return ;
 
-        if (sum > target || i == nums.size())
-            return;
+         
+         if(sum> target){
+           
+            return ;
+
+        }
 
         ans.push_back(nums[i]) ;
         sumtwo(nums,res,target,n,i+1,sum+nums[i]) ;
