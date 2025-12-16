@@ -17,12 +17,12 @@ public:
 
         ans.push_back(nums[i]) ;
         sumtwo(nums,res,target,n,i+1,sum+nums[i]) ;
-        sum = sum-nums[i] ;
+     
         ans.pop_back();
          while (i + 1 < nums.size() && nums[i] == nums[i + 1])
             i++;
         
-        sumtwo(nums,res,target,n,i+1,sum+nums[i]) ;
+        sumtwo(nums,res,target,n,i+1,sum) ;
         
     }
 
