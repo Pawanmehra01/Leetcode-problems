@@ -7,11 +7,9 @@ public:
             res.push_back(nums);
             return ;
         }
-        set<char>st ;
+   
         for( int j = i ;j <n ;  j ++ ){
-            if(st.count(nums[j]))continue;
-             
-             st.insert(nums[j]);
+           
             swap(nums[i],nums[j]);
             solve(nums,res,i+1, n);
             swap(nums[j],nums[i]);
