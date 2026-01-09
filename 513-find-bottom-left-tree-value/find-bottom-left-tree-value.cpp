@@ -27,11 +27,12 @@ public:
             return findBottomLeftValue(root->left);
         //  cout<<value<<endl;
         }
-        else if(left<right){
+        else{
             return  findBottomLeftValue(root->right);
         // cout<<value<<endl;
         }
       
         return root->val;
+       
     }
 };
