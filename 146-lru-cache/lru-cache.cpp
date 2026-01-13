@@ -20,7 +20,7 @@ public:
     
     LRUCache(int capacity) {
         this->capacity = capacity ;
-        mp.clear(); 
+   
         tail = new Node(-1,-1) ;
         head = new Node (-1,-1) ;
         head ->next = tail ;
