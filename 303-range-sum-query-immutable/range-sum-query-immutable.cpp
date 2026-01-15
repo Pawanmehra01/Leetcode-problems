@@ -3,15 +3,22 @@ public:
     vector<int>res;
     NumArray(vector<int>& nums) {
     int  n  = nums.size();
-    res.resize(n+1, 0);
+    res.resize(n,0);
+    int sum  = 0;
+
     for(int i = 0 ;i < n ;i ++ ){
-       res[i+1] = res[i] + nums[i] ;
-    }
+        sum = sum +nums[i];
+        nums[i]= sum ;
+        res[i]= nums[i];
+       }
 
     }
     
     int sumRange(int left, int right) {
-        return res[right+1]-res[left];
+        if(left==0)return res[right];
+        else{
+            return res[right]- res[left-1];
+        }
     }
 };
 
