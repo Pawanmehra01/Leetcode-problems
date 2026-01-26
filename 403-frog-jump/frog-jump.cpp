@@ -36,6 +36,6 @@ public:
         }
         memset(dp,-1,sizeof(dp));
 
-        return canReach(stones,0,0,n,mp);
+        return canReach(stones,1,1,n,mp);
     }
 };
