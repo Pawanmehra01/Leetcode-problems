@@ -1,6 +1,6 @@
 class Solution {
 public: 
-    int dp[201][100001];
+    int dp[201][20001];
     int n ;
 
     bool helper(int TotalSum ,vector<int>&nums,int i , int curSum){
