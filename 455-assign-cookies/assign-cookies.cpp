@@ -17,10 +17,7 @@ public:
                 else if(s[r]<g[l]){
                        r++;
                     }
-                    else{
-                        l++;
-                    }
-        }
+        }  
         return satisfied;
     }
 };         
