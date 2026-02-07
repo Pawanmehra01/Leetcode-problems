@@ -1,22 +1,22 @@
 class Solution {
 public:
     int dp[1001][1001];
-    int solve(string &text1 ,string &text2 , int m , int n ){
-        if(m == 0  || n == 0 )return  0 ;
-        if(dp[m][n]!=-1){
-            return dp[m][n] ;
+    int res(string &text1 , string &text2, int i , int j ){
+        if(i>=text1.length()||j>=text2.length()){
+            return 0  ;
         }
-        int ans = 0 ;
-        if(text1[m-1]==text2[n-1]){
-            ans = 1 + solve(text1,text2,m-1,n-1);
+        if(dp[i][j] != -1)return dp[i][j];
+        int take = 0 ;
+        if(text1[i]==text2[j]){
+           take = 1 + res(text1,text2,i+1,j+1);
         }
-        int not_take = max(solve(text1,text2 ,m-1,n),solve(text1,text2,m,n-1));
-        return dp[m][n]=max(ans,not_take);
+        int dont_take = max(res(text1,text2,i,j+1),res(text1,text2,i+1,j));
+        return dp[i][j] =  max(take,dont_take);
     }
     int longestCommonSubsequence(string text1, string text2) {
-        int m = text1.length();
-        int n = text2.length();
-        memset(dp,-1,sizeof(dp));
-        return solve(text1,text2,m,n);
+        int i = 0 ;
+        int j = 0 ;
+        memset(dp,-1,sizeof(dp)) ;
+        return res(text1 , text2, i , j );
     }
 };
