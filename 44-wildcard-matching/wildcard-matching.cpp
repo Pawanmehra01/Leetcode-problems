@@ -16,8 +16,7 @@ public:
         }
         if(dp[i][j]!=-1)return dp[i][j];
 
-        bool ans = true;
-        bool sol = true;
+        
         if(s[i] == p[j] || (p[j]=='?')){
            return dp[i][j] = res(s,p,i+1,j+1);
         }
