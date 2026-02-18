@@ -2,7 +2,7 @@ class Solution {
 public:
     int ladderLength(string beginWord, string endWord, vector<string>& wordList) {
         int n = wordList[0].size();
-        int steps  = 0 ;
+        int steps  = 1 ;
         unordered_set<string>st(wordList.begin(),wordList.end());
         queue<pair<string , int>>que ;
         que.push({beginWord,steps});
@@ -11,7 +11,7 @@ public:
             int steps = que.front().second ;
             string original = word;
             que.pop();
-            if(word == endWord)return steps+1 ;
+           
             for(int i = 0 ;i< n ;i++){
                 
                 for(char alpa = 'a' ; alpa<='z' ;alpa++){
@@ -23,6 +23,7 @@ public:
                 }
                 word = original ;
             }
+                if(word == endWord)return steps ;
         }
         return 0 ;
 
