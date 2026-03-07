@@ -27,7 +27,6 @@ public:
                 i++ ;
             }
             if(j-i+1 == n){
-                
                 res = min({flip1 ,flip2,res}) ;
             }
             j++ ;
