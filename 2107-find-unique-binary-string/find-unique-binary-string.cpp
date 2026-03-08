@@ -4,7 +4,7 @@ public:
     int n;
     string ans;
 
-    void solve(string res, unordered_set<string>& store_string, int i){
+    void solve(string &res, unordered_set<string>& store_string, int i){
 
         if(ans != "") return;
 
@@ -15,8 +15,13 @@ public:
             return;
         }
 
-        solve(res + '0', store_string, i + 1);
-        solve(res + '1', store_string, i + 1);
+        res.push_back('0');
+        solve(res, store_string, i + 1);
+        res.pop_back();
+
+        res.push_back('1');
+        solve(res, store_string, i + 1);
+        res.pop_back();
     }
 
   
