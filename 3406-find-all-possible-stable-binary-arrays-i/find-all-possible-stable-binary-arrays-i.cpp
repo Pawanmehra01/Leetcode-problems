@@ -21,8 +21,8 @@ public:
     }
     int numberOfStableArrays(int zero, int one, int limit) {
         memset(dp,-1,sizeof(dp));
-        int solvewithOnes = solve(limit,one ,zero,false);
-        int solvewithZeroes = solve(limit , one ,zero ,true) ;
+        int solvewithOnes = solve(limit,one ,zero,true);
+        int solvewithZeroes = solve(limit , one ,zero ,false) ;
         return (solvewithOnes + solvewithZeroes)%M ;
         
     }
