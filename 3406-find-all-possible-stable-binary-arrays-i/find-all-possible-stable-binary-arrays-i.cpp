@@ -2,28 +2,29 @@ class Solution {
 public: 
     int M = 1e9+7 ;
     int dp[201][201][2] ;
-    int solve(int limit , int ones ,int zeroes ,bool lastOne){
-        if(ones == 0 && zeroes == 0)return 1 ;
-
-        if(dp[ones][zeroes][lastOne] != -1)return dp[ones][zeroes][lastOne] ;
-        int result = 0 ;
-        if(lastOne == true){
-            for(int i = 1 ;i <= min(limit,zeroes); i++){
-                result = (result + solve(limit,ones,zeroes-i,false))%M;
-            }
-        }
-        else {
-            for(int i = 1 ;i <= min(limit,ones); i++){
-                result = (result + solve(limit,ones-i,zeroes,true))%M;
-            }
-        }
-        return dp[ones][zeroes][lastOne] = result ;
-    }
     int numberOfStableArrays(int zero, int one, int limit) {
-        memset(dp,-1,sizeof(dp));
-        int solvewithOnes = solve(limit,one ,zero,false);
-        int solvewithZeroes = solve(limit , one ,zero ,true) ;
-        return (solvewithOnes + solvewithZeroes)%M ;
+        memset(dp,0,sizeof(dp));
+        dp[0][0][1] = 1 ;
+        dp[0][0][0] = 1 ;
         
+        for(int i = 0 ;i <=one ; i++ ){
+            for(int j = 0 ; j <=zero ;j ++ ){
+                    if(i == 0 && j == 0)continue ;
+                        int result = 0 ;
+                        for(int k = 1 ;k <= min(limit,j); k++){
+                           result = (result + dp[i][j-k][0])%M;
+                        }
+                        dp[i][j][1] = result;
+                    
+                        result = 0;
+                        for(int k = 1 ;k <= min(limit,i); k++){
+                            result  = (result + dp[i-k][j][1])%M;
+                        }
+                        dp[i][j][0] = result ;
+                }
+                    
+            }
+        
+        return (dp[one][zero][0] + dp[one][zero][1]) % M;
     }
 };
