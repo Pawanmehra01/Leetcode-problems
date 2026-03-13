@@ -13,7 +13,7 @@ public:
                 high = mid ;
             }
         }
-        return high ;
+        return low ;
         
     }
 };
