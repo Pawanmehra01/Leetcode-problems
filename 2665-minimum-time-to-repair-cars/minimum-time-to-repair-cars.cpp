@@ -4,7 +4,7 @@ public:
     bool is_it_Possible(vector<int>& ranks,int cars,ll mid){
         ll no_of_cars = 0 ;
         for(int i = 0 ;i < ranks.size() ;i ++){
-            no_of_cars += (ll)sqrt(mid/ranks[i]);
+            no_of_cars += sqrt(mid/ranks[i]);
         }
         return no_of_cars>=cars ;
     }
