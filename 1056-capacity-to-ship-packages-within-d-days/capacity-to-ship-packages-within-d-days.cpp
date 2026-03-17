@@ -21,7 +21,7 @@ public:
         int result  = -1 ;
 
         while(low <= high ){
-            int mid = low +(high-low)/2 ;
+            int mid = (high+low)/2 ;
 
             if(is_valid_weight(mid , weights ,days )){
                 result = mid ;
