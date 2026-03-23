@@ -1,41 +1,32 @@
 class Solution {
-public: 
-        int n  ;
-        int m  ;
-        int mod = 1e9+7 ;
-        typedef long long  ll ; 
-        vector<vector<pair<ll,ll>>>t ;
-        pair<ll ,ll> solve (int i , int j  ,vector<vector<int>>&grid){
-            if(i == n-1 && j == m-1)return {grid[i][j] , grid[i][j]};
-            
-            ll MaxVal = LLONG_MIN ;
-            ll MinVal = LLONG_MAX;
-            if(t[i][j] != make_pair(LLONG_MIN, LLONG_MAX))return t[i][j] ;
-            if(i+1 <= n-1 ){
-                //down
-                auto [downMax ,downMin] = solve(i+1 , j ,grid) ;
-                MaxVal = max({MaxVal ,downMax*grid[i][j] , downMin*grid[i][j]}) ;
-
-                MinVal = min({MinVal,downMax*grid[i][j] , downMin*grid[i][j]}) ;
-                
-            }
-            if(j+1 <=m-1){
-                //right
-                auto [rightMax ,rightMin] = solve(i,j+1,grid) ;
-                MaxVal = max({MaxVal , grid[i][j]*rightMax , grid[i][j]*rightMin}) ;
-
-                MinVal = min({MinVal ,grid[i][j]*rightMax,grid[i][j]*rightMin}) ;
-                
-            }
-            return t[i][j] = {MaxVal ,MinVal} ;
-        }
-
+public:
+    int mod =  1e9 +7 ;
+    typedef long long ll ;
     int maxProductPath(vector<vector<int>>& grid) {
-         n  = grid.size() ;
-         m = grid[0].size() ;
-         t = vector<vector<pair<ll,ll>>>(n ,vector<pair<ll,ll>>(m,make_pair(LLONG_MIN , LLONG_MAX))) ;
-         auto [maxVal ,minVal] = solve(0 , 0 , grid );
-         return(maxVal < 0)?-1 :maxVal % 1000000007;
-        
+        int n  = grid.size() ;
+        int m = grid[0].size() ;
+        vector<vector<pair<ll,ll>>>t(n ,vector<pair<ll,ll>>(m)) ;
+        t[0][0] ={grid[0][0],grid[0][0]} ;
+        for( int i = 1 ; i < m ;i ++ ){
+            t[0][i].first =  t[0][i-1].first * grid[0][i] ;
+            t[0][i].second = t[0][i-1].second * grid[0][i] ;
+        }
+        for( int i = 1 ; i < n ;i ++ ){
+            t[i][0].first =  t[i-1][0].first * grid[i][0] ;
+            t[i][0].second = t[i-1][0].second * grid[i][0] ;
+        }
+        for(int i = 1 ;i < n ;i ++ ){
+            for( int j = 1 ;j < m ; j ++){
+                ll topmax = t[i-1][j].first;
+                ll topmin = t[i-1][j].second ;
+                ll leftmax = t[i][j-1].first;
+                ll leftmin = t[i][j-1].second;
+
+                t[i][j].first  = max({topmax * grid[i][j] , topmin *grid[i][j] ,leftmax* grid[i][j] ,leftmin *grid[i][j]}) ;
+                t[i][j].second = min({topmax * grid[i][j] , topmin *grid[i][j] ,leftmax* grid[i][j] ,leftmin *grid[i][j]}); 
+            }
+        }
+        if(t[n-1][m-1].first < 0)return -1 ;
+        else return t[n-1][m-1].first % mod ;
     }
 };
