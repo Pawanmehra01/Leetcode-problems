@@ -18,8 +18,8 @@ public:
                 prefix1 = prefix1 + grid[i][j] ;
 
             } 
-            long long totalsum = pre - prefix1 ;
-            if(totalsum == check) return true ;
+            // long long totalsum = pre - prefix1 ;
+            if(prefix1 == check)return true;
         }
 
         long long  prefix2  = 0;
@@ -29,7 +29,8 @@ public:
                 prefix2 = prefix2 + grid[j][i] ;   
             }
             long long totalsum = pre - prefix2 ;
-            if(totalsum == check) return true ;
+            // if(totalsum == check) return true ;
+            if(prefix2 == check)return true;
         }
         return false;
     }
