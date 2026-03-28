@@ -7,12 +7,7 @@ public:
           for( int i = 0 ;i < n; i++ ){
             reverse(image[i].begin(),image[i].end()) ;
           }
-          for( int i = 0 ;i < n; i++ ){
-            for(int j = 0 ;j < m ;j ++){
-                cout<<image[i][j]<<" ";
-            }
-            cout<<endl; 
-          }
+          
           for( int i = 0 ;i < n; i++ ){
             for(int j = 0 ;j < m ;j ++){
                 if(image[i][j] == 0 )image[i][j] = 1;
