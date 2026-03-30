@@ -17,21 +17,7 @@ public:
                 j++;
             }
         }
-        j=2 ;
-        i=0;
-        while(j<4){
-            if(s1==s2)return true;
-
-            if(s1[i] == s2[i]){
-                i++ ;
-                j++ ;
-            }
-            else{
-                swap(s2[i],s2[j]);
-                i++;
-                j++;
-            }
-        }
+       
         if(s1==s2)return true;
         return false;
     }
